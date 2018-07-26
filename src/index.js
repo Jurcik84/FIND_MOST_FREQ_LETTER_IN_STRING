@@ -1,4 +1,4 @@
-const data = "Hello world";
+const data = "juraj is very jiraj likejiraj";
 
 const dataToarray = [...data];
 
@@ -6,7 +6,7 @@ const dataWithNoDuplicity = [...new Set(dataToarray)];
 
 const result = {};
 
-const dataToarrayReduced = dataWithNoDuplicity.forEach(item => {
+dataWithNoDuplicity.forEach(item => {
   const helper = dataToarray.filter(filterItem => item === filterItem);
   result[item] = helper.length;
 });
@@ -17,6 +17,6 @@ const resultValues = Object.values(result);
 const max = Math.max(...resultValues);
 const indexOfMaxInResultValues = resultValues.indexOf(max);
 
-const mostFrequentValueInString = resultKeys[indexOfMaxInResultValues];
+const res = resultKeys[indexOfMaxInResultValues];
 
-console.log(resultValues);
+console.log(res);
