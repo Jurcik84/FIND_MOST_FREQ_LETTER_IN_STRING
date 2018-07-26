@@ -1,22 +1,32 @@
 const data = "juraj is very jiraj likejiraj";
 
-const dataToarray = [...data];
+function findMostFrequentLetterInString(longString, cb) {
+  // Convert data into Array
+  const dataToarray = [...longString];
 
-const dataWithNoDuplicity = [...new Set(dataToarray)];
+  // Remove duplicity from Array
+  // To avoid interations
+  const dataWithNoDuplicity = [...new Set(dataToarray)];
 
-const result = {};
+  // Our resukt object
+  //keys and values later used to find most freq letter
+  const result = dataWithNoDuplicity.reduce((accum, next) => {
+    const helper = dataToarray.filter(filterItem => next === filterItem);
+    accum[next] = helper.length;
+    return accum;
+  }, {});
 
-dataWithNoDuplicity.forEach(item => {
-  const helper = dataToarray.filter(filterItem => item === filterItem);
-  result[item] = helper.length;
+  // THe target letter has the same index as its  value
+  const resultKeys = Object.keys(result);
+  const resultValues = Object.values(result);
+
+  const indexOfMaxInResultValues = resultValues.indexOf(
+    Math.max(...resultValues)
+  );
+
+  cb(resultKeys[indexOfMaxInResultValues]);
+}
+
+findMostFrequentLetterInString(data, resultValue => {
+  console.log("The most frequent letter is :", resultValue);
 });
-
-const resultKeys = Object.keys(result);
-const resultValues = Object.values(result);
-
-const max = Math.max(...resultValues);
-const indexOfMaxInResultValues = resultValues.indexOf(max);
-
-const res = resultKeys[indexOfMaxInResultValues];
-
-console.log(res);
